@@ -27,21 +27,88 @@
 <body>
     {%include "navbar.html" %}
 
-    <h4>Numar de infectati: </h4>
+    
+    <div class="container my-5">
+
+
+      <!--Section: Content-->
+      <section class="p-5 z-depth-1">
+        
+        <h3 class="text-center font-weight-bold mb-5">Statistici globale</h3>
+    
+        <div class="row d-flex justify-content-center">
+    
+          <div class="col-md-6 col-lg-3 mb-4 text-center">
+            <h4 class="h1 font-weight-normal mb-3">
+              <i class="far fa-check-circle orange-text"></i>
+              <span class="d-inline-block count-up" data-from="0" data-to="100" data-time="2000" id="total_infected"></span>
+            </h4>
+            <p class="font-weight-normal text-muted">Cazuri confirmate</p>
+          </div>
+    
+          <div class="col-md-6 col-lg-3 mb-4 text-center">
+            <h4 class="h1 font-weight-normal mb-3">
+              <i class="fas fa-first-aid orange-text"></i>
+              <span class="d-inline-block count1" data-from="0" data-to="250" data-time="2000" id="vindecati"></span>
+            </h4>
+            <p class="font-weight-normal text-muted">Vindecati</p>
+          </div>
+    
+          <div class="col-md-6 col-lg-3 mb-4 text-center">
+            <h4 class="h1 font-weight-normal mb-3">
+              <i class="fas fa-exclamation orange-text"></i>
+              <span class="d-inline-block count2" data-from="0" data-to="330" data-time="2000" id="critical"></span>
+            </h4>
+            <p class="font-weight-normal text-muted">Stare critica</p>
+          </div>
+          
+          <div class="col-md-6 col-lg-3 mb-4 text-center">
+            <h4 class="h1 font-weight-normal mb-3">
+              <i class="fas fa-skull-crossbones orange-text"></i>
+              <span class="d-inline-block count3" data-from="0" data-to="430" data-time="2000" id="decese"></span>
+            </h4>
+            <p class="font-weight-normal text-muted">Decese</p>
+          </div>
+    
+        </div>
+    
+      </section>
+      <!--Section: Content-->
+    
+    
+    </div>
+
+
+
+
+
 
   <script type="text/javascript">
-  const myPost = async (postBody) => {
-    const rawResponse = await fetch('https://api.covid19api.com/summary', {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(postBody)
-    });
-    const response = await rawResponse.json();
-    console.log(response);
-};
+      var data = null;
+
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+
+      xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+          console.log(this.responseText.slice(15, 22));
+          var totalCazuri = this.responseText.slice(15, 22);
+          var vindecati = this.responseText.slice(37, 43);
+          var critical = this.responseText.slice(57, 62);
+          var decese = this.responseText.slice(74, 80);
+          document.getElementById("total_infected").innerHTML = totalCazuri;
+          document.getElementById("vindecati").innerHTML = vindecati;
+          document.getElementById("critical").innerHTML = critical;
+          document.getElementById("decese").innerHTML = decese;
+        }
+      });
+
+      xhr.open("GET", "https://covid-19-data.p.rapidapi.com/totals?format=json");
+      xhr.setRequestHeader("x-rapidapi-host", "covid-19-data.p.rapidapi.com");
+      xhr.setRequestHeader("x-rapidapi-key", "ef0772bc94msh90c8d83830ca946p12bc46jsn27979572d959");
+
+      xhr.send(data);
+
   </script>
 
 
