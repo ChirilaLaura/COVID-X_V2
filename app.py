@@ -27,6 +27,12 @@ def image():
     if request.method == 'POST':
             return redirect(url_for('index'))
     return render_template('file_input_covid.html')
+
+@app.route('/CovidX/Informatii')
+def info():
+    if request.method == 'POST':
+            return redirect(url_for('index'))
+    return render_template('informatii.html')
 '''
 @app.route('/CovidX/numar_infectati')
 def nr_cazuri():
