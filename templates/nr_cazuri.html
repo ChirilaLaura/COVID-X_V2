@@ -1,8 +1,58 @@
+<!DOCTYPE html>
 <html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CovidX</title>
+
+    
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cards_flip.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css')}}">
+    
+
+</head>
+
+
+
 <body>
-  <h1>Numar Cazuri</h1>
-  {%for case in cases%}
-  <div>{{case["confirmed"]}}</div>
-  {%endfor%}
+    {%include "navbar.html" %}
+
+    <h4>Numar de infectati: </h4>
+
+  <script type="text/javascript">
+  const myPost = async (postBody) => {
+    const rawResponse = await fetch('https://api.covid19api.com/summary', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(postBody)
+    });
+    const response = await rawResponse.json();
+    console.log(response);
+};
+  </script>
+
+
+   
+    <script src="{{ url_for('static', filename='js/jquery.min.js')}}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js')}}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/tether.min.js')}}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/mdb.min.js')}}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js')}}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/dynamic.js')}}" type="text/javascript"></script>
+    
+
+    {%include "footer.html" %}
 </body>
-</html>

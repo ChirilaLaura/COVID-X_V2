@@ -33,6 +33,12 @@ def info():
     if request.method == 'POST':
             return redirect(url_for('index'))
     return render_template('informatii.html')
+
+@app.route('/CovidX/numar_cazuri')
+def infected():
+    if request.method == 'POST':
+            return redirect(url_for('index'))
+    return render_template('nr_cazuri.html')
 '''
 @app.route('/CovidX/numar_infectati')
 def nr_cazuri():
