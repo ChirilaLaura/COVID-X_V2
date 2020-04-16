@@ -1,1 +1,1 @@
-# COVID-X_V2
+# COVID-X
