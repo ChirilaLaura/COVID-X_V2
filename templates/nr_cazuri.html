@@ -91,7 +91,7 @@
 
       xhr.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
-          console.log(this.responseText.slice(15, 22));
+          //console.log(this.responseText.slice(15, 22));
           var totalCazuri = this.responseText.slice(15, 22);
           var vindecati = this.responseText.slice(37, 43);
           var critical = this.responseText.slice(57, 62);
