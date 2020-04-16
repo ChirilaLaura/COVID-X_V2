@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import argparse
 
-config = tf.ConfigProto()
+config = tf.ConfigProto(log_device_placement=True)
 config.gpu_options.allow_growth=True
 session = tf.Session(config=config)
 
